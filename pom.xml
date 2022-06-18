@@ -97,13 +97,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Ice Cream Shop Webpage Release Repository</name>
-	      <url>http://172.31.89.141:8081/repository/icecream-shop-release/</url>
+	      <url>http://54.196.195.225:8081/repository/g2-app-release//</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Ice Cream Shop Webpage Release Repository</name>
-	      <url>http://172.31.89.141:8081/repository/ice-cream-shop-snapshot/</url>
+	      <url>http://54.196.195.225:8081/repository/g2-app-smapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
