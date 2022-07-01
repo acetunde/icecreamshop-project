@@ -39,7 +39,7 @@ stages{
     stage('6.PushtoProd'){
         steps{
             echo "pushing to tomcat"
-            deploy adapters: [tomcat9(credentialsId: 'tomcat-cred1', path: '', url: 'htttp://172.31.24.219:8888/')], contextPath: 'restaurant-voice-app', war: 'target/*.war'
+            deploy adapters: [tomcat9(credentialsId: 'tomcat-cred1', path: '', url: 'htttp://172.31.24.219:8080/')], contextPath: 'restaurant-voice-app', war: 'target/*.war'
             
         }
     }
