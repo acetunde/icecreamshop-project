@@ -21,19 +21,19 @@ stages{
     stage('3.CodeBuild'){
         steps{
             echo "package building with maven"
-            sh "${mvn}/bin/mvn package"
+            sh "mvn clean package"
         }
     }
     stage('4.CodeQuality'){
         steps{
             echo "testing with sonarqube"
-            sh "${mvn}/bin/mvn sonar:sonar"
+            sh "mvn sonar:sonar"
         }
     }
     stage('5.CodeBackup'){
         steps{
             echo "deploying to nexus"
-            sh "${mvn}/bin/mvn deploy"
+            sh "mvn deploy"
         }
     }
     stage('6.PushtoProd'){
