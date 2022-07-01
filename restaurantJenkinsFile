@@ -1,0 +1,55 @@
+def date1 = new Date().format("yyyy-MM-dd' 'HH:mm:ss.SSSXXX' '",TimeZone.getTimeZone('America/Toronto'))
+def date2 = new Date().format("yyyy-MM-dd' 'HH:mm:ss.SSSXXX' '",TimeZone.getTimeZone('America/Toronto'))
+pipeline(){
+    agent any
+    tools{
+        maven "maven3.8.4"
+    }
+stages{
+    stage('1.Initialization'){
+        steps{
+            buildName 'restautant-voice-app${BUILD_NUMBER}'//set build name and other
+            slackSend color: "good", message:  date1 + " \n :large_green_circle: *STARTED* \n ${env.JOB_NAME} Build${env.BUILD_NUMBER}"
+        }
+    }
+    stage('2.CloneSCM'){
+        steps{
+            echo "cloning from Git repository"
+            git branch:'stage', url:'https://github.com/acetunde/icecreamshop-project.git'
+        }
+    }
+    stage('3.CodeBuild'){
+        steps{
+            echo "package building with maven"
+            sh "${mvn}/bin/mvn package"
+        }
+    }
+    stage('4.CodeQuality'){
+        steps{
+            echo "testing with sonarqube"
+            sh "${mvn}/bin/mvn sonar:sonar"
+        }
+    }
+    stage('5.CodeBackup'){
+        steps{
+            echo "deploying to nexus"
+            sh "${mvn}/bin/mvn deploy"
+        }
+    }
+    stage('6.PushtoProd'){
+        steps{
+            echo "pushing to tomcat"
+            deploy adapters: [tomcat9(credentialsId: 'tomcat-cred1', path: '', url: 'htttp://172.31.24.219:8888/')], contextPath: 'restaurant-voice-app', war: 'target/*.war'
+            
+        }
+    }
+}
+post{
+    success{
+        slackSend color: "good", message:  date2 + " \n :heavy_check_mark: *SUCCESS* \n ${env.JOB_NAME} Build${env.BUILD_NUMBER}"   
+    }
+    failure{
+        slackSend color: "danger", message:  date2 + " \n :no_entry: *FAILED* \n ${env.JOB_NAME} Build${env.BUILD_NUMBER}"
+    }
+}
+}
