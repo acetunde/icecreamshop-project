@@ -5,7 +5,7 @@
 	<groupId>com.mt</groupId>
 	<artifactId>ice-cream-shop-page</artifactId>
 	<packaging>war</packaging>
-	<version>1.5.1-RELEASE</version>
+	<version>1.9.1-SNAPSHOT</version>
 	
 	<name>ice-cream-shop</name>
 
@@ -21,9 +21,9 @@
 		<spring.version>5.1.2.RELEASE</spring.version>
 		<junit.version>4.11</junit.version>
 		<log4j.version>1.2.17</log4j.version>
-		<sonar.host.url>http://3.87.223.223:9000/</sonar.host.url>
+		<sonar.host.url>http://192.168.2.12:9010/</sonar.host.url>
 		<sonar.login>admin</sonar.login>
-		<sonar.password>admin</sonar.password>
+		<sonar.password>admin123</sonar.password>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -97,13 +97,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Ice Cream Shop Webpage Release Repository</name>
-	      <url>http://172.31.89.141:8081/repository/ice-cream-shop-release/</url>
+	      <url>http://192.168.2.12:8091/repository/app-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Ice Cream Shop Webpage Release Repository</name>
-	      <url>http://172.31.89.141:8081/repository/ice-cream-shop-snapshot/</url>
+	      <url>http://192.168.2.12:8091/repository/app-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
